@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row align-i tems-center vh-100">
         <div class="col-6 mx-auto">
@@ -7,40 +6,40 @@
                     <form #f [formGroup]="loginForm">
                         <div class="form-group ">
                             <div>
-                            <img src="assets\excelencia.png" alt="excelencia" class="rounded mx-auto d-block" >
+                                <img src="assets\excelencia.png" alt="excelencia" class="rounded mx-auto d-block">
                             </div>
                             <div>
-                            <label for="username">Username</label>
-                            <input class="form-control" type="text" placeholder="username"  formControlName="username" aria-label="default input example">
-                            <!-- <input type="text" formControlName="username" class="form-control" /> -->
-                            <div *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].invalid" class="alert alert-danger"> 
-                                <div *ngIf="loginForm.controls['username'].errors.required">Username is required</div>
-                            </div> 
-                        </div>
+                                <label for="username">Username</label>
+                                <input class="form-control" type="text" placeholder="username"
+                                    formControlName="username" aria-label="default input example">
+                                <!-- <input type="text" formControlName="username" class="form-control" /> -->
+                                <div *ngIf="submitted && loginForm.controls['username'].invalid"
+                                    class="alert alert-danger">
+                                    <div *ngIf="loginForm.controls['username'].errors.required">Username is required
+                                    </div>
+                                    <div *ngIf="loginForm.controls['username'].errors.cannotContainSpace">Username
+                                        cannot contain space.</div>
+
+                                </div>
+                            </div>
                             <label for="password">Password</label>
-                            <input class="form-control"type="password" placeholder="password" formControlName="password" aria-label="default input example">
+                            <input class="form-control" type="password" placeholder="password"
+                                formControlName="password" aria-label="default input example">
                             <!-- <input type="password" formControlName="password" class="form-control"  /> -->
-                            <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid" class="alert alert-danger" >
+                            <div *ngIf="submitted && loginForm.controls['password'].invalid" class="alert alert-danger">
                                 <div *ngIf="loginForm.controls['password'].errors.required">Password is required</div>
-                            </div> 
-                         <div class="d-grid gap-2 m-3">
-                            <button  (click)="onSubmit()" class="btn btn-primary">Login</button>
+                            </div>
+                            <div class="d-grid gap-2 m-3">
+                                <button type="submit" (click)="onSubmit()" class="btn btn-primary">Login</button>
+                            </div>
+                            <div class="d-grid gap-2 m-3">
+                                <a routerLink="/register" class="btn btn-link">Register</a>
+                            </div>
                         </div>
-                        <div class="d-grid gap-2 m-3">
-                            <a routerLink="/register" class="btn btn-link">Register</a>
-                        </div>
-                      </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-

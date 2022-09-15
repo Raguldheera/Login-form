@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators,} from '@angular/forms';
+import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsernameValidator } from '../registerform/validators';
 
 @Component({
   selector: 'app-loginform',
@@ -9,31 +10,32 @@ import { Router } from '@angular/router';
 })
 export class LoginformComponent implements OnInit {
   loginForm: FormGroup;
+  submitted = false;
 
-  
 
 
-  constructor(private router: Router ) { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl ('',[Validators.required]),
-      password: new FormControl ('',[Validators.required])
+      username: new FormControl('', [Validators.required, UsernameValidator.cannotContainSpace]),
+      password: new FormControl('', [Validators.required])
 
-  })
+    })
 
   }
-  
 
 
-  onSubmit(){
-    
-    if(this.loginForm.valid){
-    this.router.navigateByUrl('/home');
-    
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.router.navigateByUrl('/home');
+    }
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      alert('Login successfull!!!');
+      console.table(this.loginForm.value);
     }
   }
-
-
-
 }

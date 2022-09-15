@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsernameValidator } from '../registerform/validators';
 @Component({
   selector: 'app-registerform',
   templateUrl: './registerform.component.html',
@@ -7,16 +8,23 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class RegisterformComponent implements OnInit {
   register: FormGroup;
+  submitted = false;
 
   constructor() { }
 
   ngOnInit() {
     this.register = new FormGroup({
-    firstName: new FormControl ('',[Validators.required]),
-    lastName: new FormControl ('',[Validators.required]),
-    email: new FormControl  ('',[Validators.required,Validators.email]),
-    city: new FormControl ('',[Validators.required])
-})
+      firstName: new FormControl('', [Validators.required, UsernameValidator.cannotContainSpace]),
+      lastName: new FormControl('', [Validators.required, UsernameValidator.cannotContainSpace]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      city: new FormControl('', [Validators.required]),
+      dateofbirth: new FormControl('', [Validators.required])
+    })
   }
-
+  onSubmit() {
+    this.submitted = true;
+    if (this.register.valid) {
+      console.table(this.register.value);
+    }
+  }
 }
